@@ -33,7 +33,7 @@ namespace GuniPortal.Models
 
         [Required]
         [ForeignKey(nameof(Submission.Faculty))]
-        public int Faculty_Id { get; set; }
+        public Guid Faculty_Id { get; set; }
         public Faculty Faculty{ get; set; }
 
         [Required]

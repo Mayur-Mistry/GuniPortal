@@ -14,7 +14,6 @@ namespace GuniPortal.Models
         public int Assignment_Id { get; set; }
 
         [Display(Name = "Student ID / Author")]
-        [Key]
         [Required]
         [ForeignKey(nameof(Assignment.student))]
         public Guid Student_Id { get; set; }        
