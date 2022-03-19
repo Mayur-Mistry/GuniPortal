@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using GuniPortal.Models;
+using GuniPortal.Models.Enums;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -51,6 +53,35 @@ namespace GuniPortal.Areas.Identity.Pages.Account
             [Display(Name = "Email")]
             public string Email { get; set; }
 
+
+            [Display(Name = "Display Name")]
+            [Required(ErrorMessage = "{0} cannot be empty.")]
+            [MinLength(2, ErrorMessage = "{0} should have at least {1} characters.")]
+            [StringLength(60, ErrorMessage = "{0} cannot have more than {1} characters.")]
+            public string DisplayName { get; set; }
+
+
+            [Display(Name = "Mobile Number")]
+            [Required(ErrorMessage = "{0} cannot be empty.")]
+            [Phone]
+            [StringLength(10)]
+            public string Mobile_no { get; set; }
+
+            [Display(Name = "Date of Birth")]
+            [Required]
+            [DataType(DataType.Date)]
+            [PersonalData]
+            [Column(TypeName = "smalldatetime")]
+            public DateTime DateOfBirth { get; set; }
+
+            [Required]
+            [Display(Name = "Gender")]
+            [PersonalData]
+            public Genders Gender { get; set; }
+
+
+
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
@@ -61,6 +92,10 @@ namespace GuniPortal.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Is Admin User?")]
+            [Required]
+            public bool IsAdminUser { get; set; } = false;
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -75,7 +110,16 @@ namespace GuniPortal.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new MyIdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new MyIdentityUser { 
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    DisplayName= Input.DisplayName,
+                    DateOfBirth = Input.DateOfBirth,
+                    Gender = Input.Gender,
+                    Mobile_no = Input.Mobile_no,
+                    IsAdminUser=Input.IsAdminUser
+
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
