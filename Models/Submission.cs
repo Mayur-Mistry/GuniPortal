@@ -18,13 +18,12 @@ namespace GuniPortal.Models
         [Required(ErrorMessage = "{0} cannot be empty")]
         public DateTime StartingDate { get; set; }
 
-        [Display(Name = "Research Start Date")]
+        [Display(Name = "Research End Date")]
         [Required(ErrorMessage = "{0} cannot be empty")]
         public DateTime EndingDate { get; set; }
 
         [Display(Name = "Status")]
         [Required]
-        [MaxLength(1)]
         // Reject = 0, Pending=1,Approved=2
         public SubmissionStatus Status { get; set; } = SubmissionStatus.Pending;
         //------------F1

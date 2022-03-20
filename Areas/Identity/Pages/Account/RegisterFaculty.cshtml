@@ -1,8 +1,16 @@
 ﻿@page
+@using GuniPortal.Data
+@using GuniPortal.Models
 @using GuniPortal.Models.Enums
-@model RegisterModel
+
+@model RegisterFacultyModel
+
 @{
-    ViewData["Title"] = "Register";
+
+
+    ViewData["Title"] = "Register Faculty";
+    
+
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -34,16 +42,6 @@
                 <span asp-validation-for="Input.Mobile_no" class="text-danger"></span>
             </div>
              <div class="form-group">
-                <label asp-for="Input.EnrollmentID "></label>
-                <input asp-for="Input.EnrollmentID" class="form-control"  />
-                <span asp-validation-for="Input.EnrollmentID" class="text-danger"></span>
-            </div>
-             <div class="form-group">
-                <label asp-for="Input.ParentName"></label>
-                <input asp-for="Input.ParentName" class="form-control"  />
-                <span asp-validation-for="Input.ParentName" class="text-danger"></span>
-            </div>
-             <div class="form-group">
                 <label asp-for="Input.Gender" class="control-label-required"></label>
                 <br />
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -67,18 +65,12 @@
                 </div>
                 <span asp-validation-for="Input.Gender" class="text-danger" style="display: block;"></span>
             </div>
-            
-            
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
+             <div class="form-group">
+                <label asp-for="Input.Experience"></label>
+                <input asp-for="Input.Experience" class="form-control" type="number" />
+                <span asp-validation-for="Input.Experience" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
+           
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>

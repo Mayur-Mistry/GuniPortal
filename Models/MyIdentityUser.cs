@@ -15,7 +15,7 @@ namespace GuniPortal.Models
     {
         [Display(Name = "Display Name")]
         [Required(ErrorMessage = "{0} cannot be empty.")]
-        [MinLength(2, ErrorMessage = "{0} should have at least {1} characters.")]
+        [MinLength(3, ErrorMessage = "{0} should have at least {1} characters.")]
         [StringLength(60, ErrorMessage = "{0} cannot have more than {1} characters.")]
         public string DisplayName { get; set; }      
 
@@ -38,9 +38,9 @@ namespace GuniPortal.Models
         [PersonalData]
         public Genders Gender { get; set; }
 
-        [Display(Name = "Is Admin User?")]
+       
         [Required]
-        public bool IsAdminUser { get; set; }=false;
+        public bool IsAdminUser { get; set; } = false;
 
         #region Navigational Properties to the Student Model (1:0 mapping)
 

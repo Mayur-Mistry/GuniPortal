@@ -9,6 +9,10 @@ namespace GuniPortal.Data
 {
     public class ApplicationDbContext : IdentityDbContext<MyIdentityUser,MyIdentityRole,Guid>
     {
+        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Submission> Submissions{ get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

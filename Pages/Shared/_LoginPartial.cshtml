@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using GuniPortal.Models
+@using GuniPortal.Models.Enums
 @inject SignInManager<MyIdentityUser> SignInManager
 @inject UserManager<MyIdentityUser> _userManager
 
@@ -10,6 +11,13 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
+        if (await _userManager.IsInRoleAsync(user,MyIdentityRoleNames.Administrator.ToString()))
+        {
+    <li class="nav-item">
+        <a class="nav-link text-light"  asp-area="Models" asp-controller="Users" asp-action="Index">Manage User</a>
+    </li>
+        }
+
     <li class="nav-item">
         <a  class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.DisplayName!</a>
     </li>

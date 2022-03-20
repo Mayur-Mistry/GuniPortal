@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GuniPortal.VIewModels.UsersListViewModel>
+
+@{
+    ViewData["Title"] = "List of Users";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/RegisterFaculty">Register New Faculty</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Display_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RolesOfUser)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Display_Name)
+            </td>
+            <td>
+                @String.Join(", ", item.RolesOfUser)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

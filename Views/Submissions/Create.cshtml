@@ -1,0 +1,61 @@
+﻿@using GuniPortal.Models.Enums
+@model GuniPortal.Models.Submission
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Submission</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StartingDate" class="control-label"></label>
+                <input asp-for="StartingDate" class="form-control" />
+                <span asp-validation-for="StartingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndingDate" class="control-label"></label>
+                <input asp-for="EndingDate" class="form-control" />
+                <span asp-validation-for="EndingDate" class="text-danger"></span>
+            </div>
+
+         
+            <div class="form-group">
+                <label asp-for="Status"></label> <br />
+                <input asp-for="Status" type="radio" value="@SubmissionStatus.Reject"
+                id="SubmissionStatus.Reject" class="form-check-inline" />
+                <label for="Reject">Reject</label>
+                <input asp-for="Status" type="radio" value="@SubmissionStatus.Approved"
+                id="SubmissionStatus.Approved" class="form-check-inline" />
+                <label for="Approved">Approved</label>
+                <span asp-validation-for="Status" class="text-danger"></span>
+               
+            </div>
+        
+            <div class="form-group">
+                <label asp-for="Faculty_Id" class="control-label"></label>
+                <input asp-for="Faculty_Id" class ="form-control" type="hidden" value="@ViewBag.Faculty_Id"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assignment_Id" class="control-label"></label>
+                <input asp-for="Assignment_Id" class ="form-control" type="hidden" value="@ViewBag.Assignment_Id"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

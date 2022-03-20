@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using GuniPortal.Models;
+using System.Security.Claims;
 
 namespace GuniPortal.Areas.Identity.Pages.Account
 {

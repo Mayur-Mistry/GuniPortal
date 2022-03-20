@@ -19,23 +19,25 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+
+
 namespace GuniPortal.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
-    public class RegisterModel : PageModel
+    [Authorize(Roles ="Administrator")]
+    public class RegisterFacultyModel : PageModel
     {
         private readonly SignInManager<MyIdentityUser> _signInManager;
         private readonly UserManager<MyIdentityUser> _userManager;
-        private readonly ILogger<RegisterModel> _logger;
+        private readonly ILogger<RegisterFacultyModel> _logger;
         private readonly IEmailSender _emailSender;
         public readonly ApplicationDbContext _context;
 
 
-        public RegisterModel(
+        public RegisterFacultyModel(
             UserManager<MyIdentityUser> userManager,
             SignInManager<MyIdentityUser> signInManager,
             ApplicationDbContext context,
-            ILogger<RegisterModel> logger,
+            ILogger<RegisterFacultyModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -44,6 +46,7 @@ namespace GuniPortal.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
+
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -62,7 +65,7 @@ namespace GuniPortal.Areas.Identity.Pages.Account
 
             [Display(Name = "Display Name")]
             [Required(ErrorMessage = "{0} cannot be empty.")]
-            [MinLength(2, ErrorMessage = "{0} should have at least {1} characters.")]
+            [MinLength(3, ErrorMessage = "{0} should have at least {1} characters.")]
             [StringLength(60, ErrorMessage = "{0} cannot have more than {1} characters.")]
             public string DisplayName { get; set; }
 
@@ -85,46 +88,34 @@ namespace GuniPortal.Areas.Identity.Pages.Account
             [PersonalData]
             public Genders Gender { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
+            
 
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
+            [Display(Name = "Year Of Experience")]
+            [Required(ErrorMessage = "{0} cannot be empty.")]
+            public int Experience { get; set; }
 
             [Display(Name = "Is Admin User?")]
             [Required]
             public bool IsAdminUser { get; set; } = false;
-
-            [Display(Name = "Student Enrollment ID")]
-            [Required(ErrorMessage = "{0} cannot be empty.")]
-            [StringLength(12, ErrorMessage = "{0} should contain {1} characters.")]
-            [MinLength(12, ErrorMessage = "{0} should contain {1} characters.")]
-            public string EnrollmentID { get; set; }
-
-            [Display(Name = "Name of the Parent")]
-            [MinLength(2, ErrorMessage = "{0} should have at least {1} characters.")]
-            [StringLength(25, ErrorMessage = "{0} should not contain more than {1} characters.")]
-            public string ParentName { get; set; }
         }
 
+     
+
+
+ 
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
-
+        
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                
+                var Password = Input.DisplayName + "@1234";
                 var user = new MyIdentityUser { 
                     UserName = Input.Email,
                     Email = Input.Email,
@@ -132,26 +123,23 @@ namespace GuniPortal.Areas.Identity.Pages.Account
                     DateOfBirth = Input.DateOfBirth,
                     Gender = Input.Gender,
                     Mobile_no = Input.Mobile_no,
-                    IsAdminUser=Input.IsAdminUser,
-
-
+                    IsAdminUser=Input.IsAdminUser
 
                 };
-                var result = await _userManager.CreateAsync(user, Input.Password);
-               
-                if (result.Succeeded)
+                var result = await _userManager.CreateAsync(user, Password);
+                var faculty = new Faculty
                 {
-                    var student = new Student
-                    {
-                        UserId = user.Id,
-                        EnrollmentID = Input.EnrollmentID,
-                        ParentName = Input.ParentName
-                    };
-                    _context.Add(student);
-                    await _context.SaveChangesAsync();
+                    UserId = user.Id,
+                    Experience=Input.Experience
+                    
+                };
 
+                _context.Add(faculty);
+                if (result.Succeeded )
+                {
+                    
                     await _userManager.AddToRolesAsync(user, new string[] { 
-                    MyIdentityRoleNames.Student.ToString()
+                    MyIdentityRoleNames.Faculty.ToString()
                     });
                     _logger.LogInformation("User created a new account with password.");
 

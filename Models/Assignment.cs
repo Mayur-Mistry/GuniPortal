@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,19 +26,22 @@ namespace GuniPortal.Models
         [StringLength(50, ErrorMessage = "{0} cannot contain more than {1} characters.")]
         public string Assignment_Title { get; set; }
 
-        [Display(Name = "Assignment Description")]        
-        [MaxLength]
+        [Display(Name = "Assignment Description")]
         [MinLength(20, ErrorMessage = "{0} should have more than {1} characters.")]
-        [Column(TypeName = "varchar")]
+        
+
         public string Assignment_Discription { get; set; }
 
         [Display(Name = "Document")]
-        [MaxLength]
-        [Required(ErrorMessage = "{0} cannot be empty")]
-        [Column(TypeName = "varchar")]
+        
+       
         public string Document { get; set; }
 
-      
+        [NotMapped]
+        [Required]
+        public IFormFile SubmissionFile { get; set; }
+
+
         #region Navigation Properties to the Department Model 
 
         [Display(Name = "Department Name")]

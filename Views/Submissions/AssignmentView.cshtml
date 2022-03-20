@@ -1,0 +1,58 @@
+﻿@model IEnumerable<GuniPortal.Models.Assignment>
+
+@{
+    ViewData["Title"] = "AssignmentView";
+}
+
+<h1>AssignmentView</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment_Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment_Discription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Document)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.student)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment_Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment_Discription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Department_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.student.EnrollmentID)
+            </td>
+            <td>
+                <a asp-action="Create" asp-route-id="@item.Assignment_Id">Check</a> |
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

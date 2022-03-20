@@ -4,14 +4,16 @@ using GuniPortal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GuniPortal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220320045959_v0.1")]
+    partial class v01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace GuniPortal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Assignment_Discription")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Assignment_Title")
                         .IsRequired()
@@ -38,7 +40,8 @@ namespace GuniPortal.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Document")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("varchar");
 
                     b.Property<Guid>("Student_Id")
                         .HasColumnType("uniqueidentifier");
@@ -75,6 +78,7 @@ namespace GuniPortal.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Department_Id")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Experience")
@@ -379,7 +383,9 @@ namespace GuniPortal.Migrations
                 {
                     b.HasOne("GuniPortal.Models.Department", "Department")
                         .WithMany("Faculty")
-                        .HasForeignKey("Department_Id");
+                        .HasForeignKey("Department_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("GuniPortal.Models.MyIdentityUser", "User")
                         .WithOne("Faculty")

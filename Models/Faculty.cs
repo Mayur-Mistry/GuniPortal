@@ -17,18 +17,16 @@ namespace GuniPortal.Models
         [ForeignKey(nameof(Faculty.User))]
         public Guid UserId { get; set; }
 
-        [Display(Name = "Type of Faculty")]
+        [Display(Name = "Year Of Experience")]
         [Required(ErrorMessage = "{0} cannot be empty.")]
-        [MinLength(3, ErrorMessage = "{0} should have more than {1} characters.")]
-        [StringLength(25, ErrorMessage = "{0} cannot contain more than {1} characters.")]
-        public Faculties FacultyType { get; set; }
+        public int Experience { get; set; }
 
         #region Navigation Properties to the Department Model 
 
         [Display(Name = "Department Id")]
-        [Required]
+        
         [ForeignKey(nameof(Faculty.Department))]      
-        public int Department_Id { get; set; }           
+        public int? Department_Id { get; set; }           
         public Department Department { get; set; }
 
         #endregion
