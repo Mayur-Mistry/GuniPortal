@@ -1,0 +1,89 @@
+﻿@model IEnumerable<GuniPortal.Models.Submission>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment.Assignment_Title)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Assignment_Discription)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Department)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Student_Id)
+            </th>
+
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Document)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Faculty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    if(@ViewBag.Student_Id == item.Assignment.Student_Id.ToString().ToUpper())
+    {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Assignment_Title)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Assignment_Discription)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Department_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Student_Id)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Document)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Faculty.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Assignment_Title)
+            </td>
+            <td>
+                
+                <a asp-action="Details" asp-route-id="@item.Submission_Id">Details</a> 
+            </td>
+        </tr>
+}}
+    </tbody>
+</table>

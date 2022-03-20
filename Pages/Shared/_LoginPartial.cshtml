@@ -8,32 +8,52 @@
     var user = await _userManager.GetUserAsync(User);
 }
 
-<ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
         if (await _userManager.IsInRoleAsync(user,MyIdentityRoleNames.Administrator.ToString()))
         {
-    <li class="nav-item">
-        <a class="nav-link text-light"  asp-area="Models" asp-controller="Users" asp-action="Index">Manage User</a>
-    </li>
+            <li class="nav-item mr-4">
+                <a class="nav-link "  asp-area="Models" asp-controller="Users" asp-action="Index">Manage User</a>
+            </li>
+        }
+          if (await _userManager.IsInRoleAsync(user,MyIdentityRoleNames.Student.ToString()))
+        {
+            <li class="nav-item mr-4">
+                <a class="nav-link "   asp-controller="Assignments" asp-action="Index">Upload Thesis</a>
+            </li>
+
+            
+            <li class="nav-item mr-4">
+                <a class="nav-link "   asp-controller="Assignments" asp-action="SubmittedAssignment">View Your Submitted Thesis</a>
+            </li>
+            
+        }
+         if (await _userManager.IsInRoleAsync(user,MyIdentityRoleNames.Faculty.ToString()))
+        {
+            <li class="nav-item mr-4">
+                <a class="nav-link "   asp-controller="submissions" asp-action="AssignmentView">Submited Thesis</a>
+            </li>
+             <li class="nav-item mr-4">
+                <a class="nav-link "   asp-controller="submissions" asp-action="Index">Checked Thesis</a>
+            </li>
         }
 
-    <li class="nav-item">
-        <a  class="nav-link text-light" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.DisplayName!</a>
+        <li class="nav-item mr-4">
+        <a  class="nav-link " asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.DisplayName!</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mr-4">
         <form class="form-inline text-light" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
-            <button  type="submit" class="nav-link btn btn-link text-light">Logout</button>
+            <button  type="submit" class="nav-link btn text-light">Logout</button>
         </form>
     </li>
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    <li class="nav-item mr-4">
+        <a class="nav-link " asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    <li class="nav-item mr-4">
+        <a class="nav-link " asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>

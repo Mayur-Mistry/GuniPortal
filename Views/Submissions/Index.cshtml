@@ -13,6 +13,22 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Assignment_Title)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Assignment_Discription)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Department)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Student_Id)
+            </th>
+
+             <th>
+                @Html.DisplayNameFor(model => model.Assignment.Document)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.StartingDate)
             </th>
             <th>
@@ -32,6 +48,8 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+     if(@ViewBag.Faculty_Id == item.Faculty_Id.ToString().ToUpper())
+    {
         <tr>
              <td>
                 @Html.DisplayFor(modelItem => item.Assignment.Assignment_Title)
@@ -40,7 +58,10 @@
                 @Html.DisplayFor(modelItem => item.Assignment.Assignment_Discription)
             </td>
              <td>
-                @Html.DisplayFor(modelItem => item.Assignment.Department)
+                @Html.DisplayFor(modelItem => item.Assignment.Department_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignment.Student_Id)
             </td>
              <td>
                 @Html.DisplayFor(modelItem => item.Assignment.Document)
@@ -62,10 +83,9 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Submission_Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Submission_Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Submission_Id">Delete</a>
+               
             </td>
         </tr>
-}
+}}
     </tbody>
 </table>

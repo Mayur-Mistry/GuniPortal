@@ -38,9 +38,19 @@ namespace GuniPortal.Controllers
         // GET: Assignments
         public async Task<IActionResult> Index()
         {
+            ViewData["Student_Id"] = User.FindFirstValue(ClaimTypes.NameIdentifier).ToUpper();
             var applicationDbContext = _context.Assignments.Include(a => a.Department).Include(a => a.student);
             return View(await applicationDbContext.ToListAsync());
         }
+        public async Task<IActionResult> SubmittedAssignment()
+        {
+/*            var resu = _context.Submissions.Join(_context.Assignments, x => x.Assignment_Id, y => y.Assignment_Id, (x, y) => x);
+*/            ViewData["Student_Id"] = User.FindFirstValue(ClaimTypes.NameIdentifier).ToUpper();
+
+            var applicationDbContext = _context.Submissions.Include(s => s.Assignment).Include(s => s.Faculty);
+            return View(await applicationDbContext.ToListAsync());
+        }
+        
 
         // GET: Assignments/Details/5
         public async Task<IActionResult> Details(int? id)

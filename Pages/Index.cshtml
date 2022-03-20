@@ -1,10 +1,136 @@
 ﻿@page
+@using GuniPortal.Models
 @model IndexModel
+@inject SignInManager<MyIdentityUser> SignInManager
+@inject UserManager<MyIdentityUser> _userManager
 @{
     ViewData["Title"] = "Home page";
+    var user = await _userManager.GetUserAsync(User);
+
 }
 
-<div class="text-center">
+@if (SignInManager.IsSignedIn(User))
+{
+<section id="Our-mission-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 chose-col wow fadeInLeft" data-wow-duration="2s" data-wow-delay=".2s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.2s; animation-name: fadeInLeft;">
+                    <div class="miss-img">
+                        <img src="Image/Our_mission-2.png" alt="miss-img-img">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 wow fadeInRight" data-wow-duration="2s" data-wow-delay=".2s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.2s; animation-name: fadeInRight;">
+                    <div class="section-tittle mission-title mb-3">
+                        <h3 class="wow fadeInDown" data-wow-duration="2s" data-wow-delay=".2s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.2s; animation-name: fadeInDown;">
+                        <small>OUR MISSION</small>Find out more about <br> learning experience</h3>
+                        <p class="aboutus-text">Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in.</p>
+                    </div>
+                    <div class="mission_item">
+                        <div class="miss-icon">1</div>
+                        <a href="#">
+                        <h5 class="choose-left">LOwer Learning Cost</h5>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet adipiscing elit sed do eiusmod ameth temporthn incididunt adipiscing elit sed do</p>
+                    </div>
+                    <div class="mission_item">
+                        <div class="miss-icon">
+                            2
+                        </div>
+                        <a href="#">
+                        <h5 class="choose-left">Increase Community</h5>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet adipiscing elit sed do eiusmod ameth temporthn incididunt adipiscing elit sed do</p>
+                    </div>
+                    <div class="mission_item">
+                        <div class="miss-icon">
+                            3
+                        </div>
+                        <a href="#">
+                        <h5 class="choose-right">Learn With Expart</h5>
+                        </a>
+                        <p>Lorem ipsum dolor sit amet adipiscing elit sed do eiusmod ameth temporthn incididunt adipiscing elit sed do</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>}
+else
+{
+<div id="banner" class="banner_content">           
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center">
+                    <div class="banner_heading">
+                        <h1 class="wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.2s; animation-name: fadeInUp;">Distan Learning for further expansion</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.consectetur adipiscing elit.</p>
+                        <div class="button_content">
+                                    <a class="btn2" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                <a class="btn1" asp-area="Identity" asp-page="/Account/Login">Login</a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 banner_image">
+                    <div class="banner-imgs">
+                        <div class="row">
+                            <div class="banner owl-carousel owl-theme owl-loaded owl-drag">
+                                
+                                
+                                
+                            <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1740px, 0px, 0px); transition: all 0.25s ease 0s; width: 4060px;"><div class="owl-item cloned" style="width: 570px; margin-right: 10px;"><div class="item"><img src="Image/banner_image2.png" alt=""></div></div><div class="owl-item cloned" style="width: 570px; margin-right: 10px;"><div class="item"><img src="Image/banner_image3.png" alt=""></div></div><div class="owl-item" style="width: 570px; margin-right: 10px;"><div class="item"><img src="Image/banner_image1.png" alt=""></div></div><div class="owl-item active" style="width: 570px; margin-right: 10px;"><div class="item"><img src="Image/banner_image2.png" alt=""></div></div><div class="owl-item" style="width: 570px; margin-right: 10px;"><div class="item"><img src="Image/banner_image3.png" alt=""></div></div><div class="owl-item cloned" style="width: 570px; margin-right: 10px;"><div class="item"><img src="Image/banner_image1.png" alt=""></div></div><div class="owl-item cloned" style="width: 570px; margin-right: 10px;"><div class="item"><img src="Image/banner_image2.png" alt=""></div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>               
+    </div>
+    
+<section id="chooseing-section">
+        <div class="container">
+            <div class="section-tittle text-center">
+                <h3 class="wow fadeInDown" data-wow-duration="2s" data-wow-delay=".2s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.2s; animation-name: fadeInDown;">
+                <small>What we do</small>Why Choose Us</h3>
+                <p>Because we know digital. With working knowledge of online, SEO and social media,<br> we can take your message wherever it needs to go.</p>
+            </div>
+            <div class="row wow zoomIn" data-wow-duration="2s" data-wow-delay=".2s" style="visibility: visible; animation-duration: 2s; animation-delay: 0.2s; animation-name: zoomIn;">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="choose_item">
+                        <img class="img1" src="Image/teacher_icon.png" alt="">
+                        <img class="img2" src="Image/teacher_icon3.png" alt="">
+                        <h4>Awesome Teacher</h4>
+                        <p> In a great teacher’s classroom, each person’s ideas and opinions are valued. Students feel safe to express their feelings.</p>
+                        <div class="arrow_shape">
+                            <a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="choose_item">
+                        <img class="img1" src="Image/knowledge_icon.png" alt="">
+                        <img class="img2" src="Image/knowledge_icon2.png" alt="">
+                        <h4>Business Knowledge</h4>
+                        <p>In a great teacher’s classroom, each person’s ideas and opinions are valued. Students feel safe to express their feelings.</p>
+                        <div class="arrow_shape">
+                            <a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        </div> 
+                    </div>    
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <div class="choose_item">
+                        <img class="img1" src="Image/chose_icon.png" alt="">
+                        <img class="img2" src="Image/choose_icon2.png" alt="">
+                        <h4>Best Programme</h4>
+                        <p>In a great teacher’s classroom, each person’s ideas and opinions are valued. Students feel safe to express their feelings.</p>
+                        <div class="arrow_shape">  
+                            <a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        </div>
+                    </div>    
+                </div> 
+            </div>
+        </div>
+    </section>
+}
+@*<div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div>*@

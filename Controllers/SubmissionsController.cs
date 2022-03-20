@@ -27,6 +27,7 @@ namespace GuniPortal.Controllers
         public async Task<IActionResult> Index()
         {
             var resu= _context.Submissions.Join(_context.Assignments, x => x.Assignment_Id,y=>y.Assignment_Id,(x,y)=>x);
+            ViewData["Faculty_Id"] = User.FindFirstValue(ClaimTypes.NameIdentifier).ToUpper();
 
             var applicationDbContext = _context.Submissions.Include(s => s.Assignment).Include(s => s.Faculty);
             return View(await applicationDbContext.ToListAsync());
@@ -92,8 +93,8 @@ namespace GuniPortal.Controllers
             {
                 return NotFound();
             }
-            ViewData["Assignment_Id"] = new SelectList(_context.Assignments, "Assignment_Id", "Assignment_Title", submission.Assignment_Id);
-            ViewData["Faculty_Id"] = new SelectList(_context.Set<Faculty>(), "UserId", "UserId", submission.Faculty_Id);
+            ViewData["Assignment_Id"] = id;
+            ViewData["Faculty_Id"] = User.FindFirstValue(ClaimTypes.NameIdentifier).ToUpper();
             return View(submission);
         }
 

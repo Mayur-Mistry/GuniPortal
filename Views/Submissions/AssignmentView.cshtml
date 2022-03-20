@@ -4,11 +4,9 @@
     ViewData["Title"] = "AssignmentView";
 }
 
-<h1>AssignmentView</h1>
+<h1>Thesis List</h1>
+<div class="container-fluid">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -25,7 +23,7 @@
                 @Html.DisplayNameFor(model => model.Department)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.student)
+                @Html.DisplayNameFor(model => model.Student_Id)
             </th>
             <th></th>
         </tr>
@@ -40,7 +38,11 @@
                 @Html.DisplayFor(modelItem => item.Assignment_Discription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Document)
+               <a href="~/Doc/@Html.DisplayFor(modelItem => item.Document)" download>
+                   <img src="~/Image/images1.png" title=" @Html.DisplayFor(modelItem => item.Document)"
+                   class="img-thumbnail" width="100px"/>
+                   </a>
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Department.Department_Name)
@@ -49,10 +51,12 @@
                 @Html.DisplayFor(modelItem => item.student.EnrollmentID)
             </td>
             <td>
-                <a asp-action="Create" asp-route-id="@item.Assignment_Id">Check</a> |
+
+                <a asp-action="Create" class="btn btn-outline-info" asp-route-id="@item.Assignment_Id">Check</a> 
                
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>

@@ -11,19 +11,58 @@
    
       
       
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="~/assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="~/css/styles.css" rel="stylesheet" />
-       
+       <!-- favicon -->
+    <link rel="shortcut icon" type="~/Image/favicon.madrasha.png" href="Image/favicon.madrasha.png">
+    <!-- animate.min - css -->
+    <link rel="stylesheet" href="~/css/animate.min.css">
+    <!-- animate - css -->
+    <link rel="stylesheet" href="~/css/animate.css">
+    <!-- owl.carousel.min - css -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <!-- owl.theme.default.min - css -->
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <!-- font-awesome.min - css -->
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/fontawesome.min.css">
+    <!-- bootstrap.min - css -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- main - css -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- responsive - css -->
+    <link rel="stylesheet" href="~/css/responsive.css"> 
 </head>
-<body>
-<header>
+<body data-new-gr-c-s-check-loaded="8.896.0" data-gr-ext-installed="">
+
+<!-- prelodear start -->
+    <div id="preloader" class="d-none"></div>
+<!-- prelodear end -->  
+
+    <header class="header-section sticky-header clearfix not-stuck">
+        <!-- top header end-->
+        <div class="menu-sticky">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg px-0">
+                    <a class="navbar-brand" ><img src="~/Image/logo1.png" width="47px" alt="">Guni-Thesis</a>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active mr-4 ">
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                            </li>
+                            <li class="nav-item mr-4">
+                            <a class="nav-link" asp-area="" asp-page="/Privacy">About-Us</a>
+                            </li>
+                           
+                         <partial name="_LoginPartial" />
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+@*<header>
 
 
-        @*/*@
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                     <img src="~/Images/thesis-icon.png" width="40" height="35" alt="">
@@ -46,10 +85,12 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    </header>*@
+    <div class="container-fluid">
+        <main role="main" class="pb-3 ">4
+            <div class="mt-5 pt-t-3">
             @RenderBody()
+            </div>
         </main>
     </div>
 
@@ -58,14 +99,19 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-     <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="~/js/scripts.js"></script>
-    <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+      <!-- jquery-3.5.0.min - js -->
+    <script src="~/js/jquery-3.5.0.min.js"></script>
+    <!-- bootstrap.min - js -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/fontawesome.min.js"></script>
+    <!-- popper.min - js -->
+    <script src="~/js/popper.min.js"></script>
+    <!-- owl.carousel.min - js -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <!-- wow.min - js -->   
+    <script src="~/js/wow.min.js"></script>
+    <!-- main - js -->  
+    <script src="~/js/main.js"></script> 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

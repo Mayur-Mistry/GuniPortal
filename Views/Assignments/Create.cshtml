@@ -16,7 +16,7 @@
             <div class="form-group">
 @*                <label asp-for="Student_Id"  class="control-label" t></label>
 *@             
-<input asp-for="Student_Id" class="form-control"  value="@ViewBag.Student_Id"/>
+<input asp-for="Student_Id" class="form-control" type="hidden" value="@ViewBag.Student_Id"/>
 
 @*                <select asp-for="Student_Id" class ="form-control" asp-items="ViewBag.Student_Id"></select>
 *@            </div>
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Assignment_Discription" class="control-label"></label>
-                <input asp-for="Assignment_Discription" class="form-control" />
+                <textarea asp-for="Assignment_Discription" class="form-control" style="height: 147px;"></textarea>
                 <span asp-validation-for="Assignment_Discription" class="text-danger"></span>
             </div>
             <div class="form-group">
