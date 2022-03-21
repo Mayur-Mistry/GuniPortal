@@ -13,7 +13,10 @@
         if (await _userManager.IsInRoleAsync(user,MyIdentityRoleNames.Administrator.ToString()))
         {
             <li class="nav-item mr-4">
-                <a class="nav-link "  asp-area="Models" asp-controller="Users" asp-action="Index">Manage User</a>
+                <a class="nav-link "  asp-area="Models" asp-controller="Users" asp-action="Index">View User</a>
+            </li>
+             <li class="nav-item mr-4">
+                <a class="nav-link "  asp-area="Models" asp-controller="departments" asp-action="Index">Department</a>
             </li>
         }
           if (await _userManager.IsInRoleAsync(user,MyIdentityRoleNames.Student.ToString()))
@@ -31,7 +34,7 @@
          if (await _userManager.IsInRoleAsync(user,MyIdentityRoleNames.Faculty.ToString()))
         {
             <li class="nav-item mr-4">
-                <a class="nav-link "   asp-controller="submissions" asp-action="AssignmentView">Submited Thesis</a>
+                <a class="nav-link "  asp-area="Models" asp-controller="submissions" asp-action="AssignmentView">Submited Thesis</a>
             </li>
              <li class="nav-item mr-4">
                 <a class="nav-link "   asp-controller="submissions" asp-action="Index">Checked Thesis</a>
